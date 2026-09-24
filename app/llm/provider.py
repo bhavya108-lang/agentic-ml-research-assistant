@@ -19,11 +19,14 @@ def get_groq():
     return ChatGroq(
         model="openai/gpt-oss-120b",
         temperature=0.2,
+        max_tokens=1200,
         groq_api_key=os.getenv("GROQ_API_KEY"),
     )
 
 
-def get_llm(provider="gemini"):
+def get_llm(provider=None):
+    provider = provider or os.getenv("LLM_PROVIDER", "gemini")
+
     if provider == "gemini":
         return get_gemini()
 

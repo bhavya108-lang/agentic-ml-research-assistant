@@ -1,10 +1,17 @@
-from app.llm.provider import get_llm
+from app.graph.workflow import app
 
 
-llm = get_llm("gemini")
+if __name__ == "__main__":
 
-response = llm.invoke(
-    "Explain RAG in the context of a computer vision research assistant in 3 sentences."
-)
+    result = app.invoke({
+        "query": "How can modern object detection models be used for traffic sign detection?",
+        "research": "",
+        "ml_analysis": "",
+        "critique": "",
+        "final_report": "",
+        "next_agent": "",
+        "iteration_count": 0,
+    })
 
-print(response.content)
+    print("\n\n================ FINAL REPORT ================\n")
+    print(result["final_report"])
