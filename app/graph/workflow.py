@@ -1,3 +1,5 @@
+from app.rag.service import retrieve_evidence
+
 from typing import TypedDict
 
 
@@ -123,11 +125,19 @@ final_report
 def research_agent(state: ResearchState):
     print("\n--- RESEARCH AGENT ---")
 
-    prompt = f"""
-You are the Research Agent in an AI/ML research assistant.
+    evidence = retrieve_evidence(
+        query=state["query"],
+        top_n=5,
+    )
 
-User research question:
+    prompt = f"""
+You are the Research Agent in an Agentic ML Research Assistant.
+
+Research question:
 {state["query"]}
+
+Retrieved evidence:
+{evidence}
 
 Previous research:
 {state["research"]}
@@ -135,21 +145,25 @@ Previous research:
 Critic feedback:
 {state["critique"]}
 
-Your task is to analyze the research question and provide:
+Analyze:
 
-1. What the problem is asking
-2. Important computer vision / machine learning concepts
-3. Relevant model families or approaches
-4. Important considerations
-5. Additional information that should be researched
+1. Relevant computer vision concepts
+2. Model architectures
+3. Datasets
+4. Training considerations
+5. Evaluation considerations
+6. Important research questions
 
-If critic feedback is provided, improve the previous research
-according to that feedback.
+Important evidence rules:
 
-Do not invent papers, datasets, benchmarks, citations,
-or numerical results.
+- Use the retrieved evidence as the primary source for factual claims.
+- Cite claims using [Evidence N].
+- Do not invent evidence numbers.
+- Do not invent sources, papers, page numbers, benchmarks,
+  or numerical results.
+- If the evidence does not establish something, say so clearly.
 
-Produce research analysis, not a final report.
+If previous research or critic feedback exists, improve it.
 """
 
     response = llm.invoke(prompt)
@@ -161,6 +175,11 @@ Produce research analysis, not a final report.
 def ml_agent(state: ResearchState):
     print("\n--- ML AGENT ---")
 
+    evidence = retrieve_evidence(
+        query=state["query"],
+        top_n=5,
+    )
+
     prompt = f"""
 You are the Machine Learning Agent in an AI/ML research assistant.
 
@@ -169,6 +188,9 @@ Original research question:
 
 Research Agent findings:
 {state["research"]}
+
+Additional retrieved ML evidence:
+{evidence}
 
 Previous ML analysis:
 {state["ml_analysis"]}
@@ -190,6 +212,15 @@ Discuss:
 
 If critic feedback is provided, improve the previous ML analysis.
 
+Important evidence rules:
+
+- Use the retrieved evidence to support technical claims.
+- Cite retrieved evidence using [Evidence N].
+- Use the Research Agent's findings as context, not as unquestionable truth.
+- Do not invent experimental results.
+- Do not invent papers, datasets, benchmarks, or numerical results.
+- Clearly distinguish evidence from your own technical reasoning.
+
 Do not invent experimental results or claim that an approach is
 state-of-the-art without evidence.
 """
@@ -203,6 +234,11 @@ state-of-the-art without evidence.
 def critic(state: ResearchState):
     print("\n--- CRITIC ---")
 
+    evidence = retrieve_evidence(
+        query=state["query"],
+        top_n=5,
+    )
+
     prompt = f"""
 You are the Critic Agent for an AI/ML research assistant.
 
@@ -215,6 +251,9 @@ Research analysis:
 ML analysis:
 {state["ml_analysis"]}
 
+Retrieved evidence for verification:
+{evidence}
+
 Evaluate the analysis for:
 
 1. Missing important information
@@ -223,6 +262,15 @@ Evaluate the analysis for:
 4. Technical mistakes
 5. Insufficient reasoning
 6. Missing experimental considerations
+7. Claims that are not supported by the retrieved evidence
+
+Important evidence rules:
+
+- Use the retrieved evidence when verifying factual claims.
+- Cite relevant evidence using [Evidence N].
+- Do not invent sources or experimental results.
+- Distinguish unsupported claims from claims that are merely
+  reasonable technical recommendations.
 
 First decide whether the analysis is acceptable.
 
@@ -278,6 +326,15 @@ Structure it as:
 ## Recommended Experimental Direction
 
 ## Limitations / Open Questions
+
+## Evidence Sources
+
+List every evidence reference used in the report.
+
+For each evidence reference, provide:
+- Evidence number
+- Source
+- Page
 
 Do not invent sources, experimental results, or citations.
 """
