@@ -19,9 +19,13 @@ def search_research_sources(
     sources = []
 
     # Web search
-    web_results = WebSearchTool(
-        max_results=max_results
-    ).run(query)
+    try:
+        web_results = WebSearchTool(
+            max_results=max_results
+        ).run(query)
+    except Exception as exc:
+        print(f"Web search failed: {exc}")
+        web_results = []
 
     for result in web_results:
         sources.append(
@@ -29,9 +33,13 @@ def search_research_sources(
         )
 
     # Paper search
-    paper_results = PaperSearchTool(
-        max_results=max_results
-    ).run(query)
+    try:
+        paper_results = PaperSearchTool(
+            max_results=max_results
+        ).run(query)
+    except Exception as exc:
+        print(f"Paper search failed: {exc}")
+        paper_results = []
 
     for result in paper_results:
         sources.append(
@@ -39,9 +47,13 @@ def search_research_sources(
         )
 
     # Dataset search
-    dataset_results = DatasetSearchTool(
-        max_results=max_results
-    ).run(query)
+    try:
+        dataset_results = DatasetSearchTool(
+            max_results=max_results
+        ).run(query)
+    except Exception as exc:
+        print(f"Dataset search failed: {exc}")
+        dataset_results = []
 
     for result in dataset_results:
         sources.append(

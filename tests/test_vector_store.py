@@ -4,7 +4,7 @@ from app.rag.vector_store import create_vector_store
 
 
 documents = load_pdf(
-    "data/papers/traffic_sign_detection.pdf"
+    "data/papers/yolo_v1.pdf"
 )
 
 chunks = split_documents(documents)

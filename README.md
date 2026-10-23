@@ -228,7 +228,7 @@ Research papers are loaded using PyPDF.
 
 Example paper:
 
-data/papers/traffic_sign_detection.pdf
+data/papers/yolo_v1.pdf
 
 Chunking
 
@@ -514,7 +514,7 @@ agentic-ml-research-assistant/
 │
 ├── data/
 │   ├── papers/
-│   │   └── traffic_sign_detection.pdf
+│   │   └── yolo_v1.pdf
 │   └── chroma/
 │
 ├── .env

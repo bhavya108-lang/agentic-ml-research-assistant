@@ -24,7 +24,7 @@ langfuse_handler = CallbackHandler()
 # raw retrieved evidence and external search results.
 # ---------------------------------------------------------------------------
 MAX_EVIDENCE_CHARS = 2500     # local RAG evidence block (retrieval, unbounded)
-MAX_SOURCES_CHARS = 1500      # external research sources block (search, unbounded)
+MAX_SOURCES_CHARS = 3500      # external research sources block (search, unbounded)
 MAX_ANALYSIS_CHARS = 5000     # research / ml_analysis re-fed elsewhere — set
                               # above the ~4800-char ceiling of a 1200-token
                               # response so it's effectively a safety cap, not

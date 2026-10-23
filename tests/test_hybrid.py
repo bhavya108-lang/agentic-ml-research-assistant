@@ -6,7 +6,7 @@ from app.rag.retriever import hybrid_search
 
 
 documents = load_pdf(
-    "data/papers/traffic_sign_detection.pdf"
+    "data/papers/yolo_v1.pdf"
 )
 
 chunks = split_documents(documents)

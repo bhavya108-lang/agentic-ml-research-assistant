@@ -48,7 +48,7 @@ DEFAULT_MAX_TOKENS = 1200
 
 def get_gemini(max_tokens: int = DEFAULT_MAX_TOKENS):
     return ChatGoogleGenerativeAI(
-        model="gemini-3.8-flash",
+        model="gemini-2.5-flash",
         temperature=0.2,
         max_output_tokens=max_tokens,
         google_api_key=os.getenv("GOOGLE_API_KEY"),
