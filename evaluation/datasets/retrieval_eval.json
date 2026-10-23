@@ -1,0 +1,29 @@
+[
+  {
+    "query": "What is the mAP and FPS of Fast YOLO on the PASCAL VOC 2007 dataset?",
+    "relevant_chunk_ids": [
+      "525175f5ccfc",
+      "76432085a701"
+    ]
+  },
+  {
+    "query": "How does the loss function balance localization errors versus classification errors?",
+    "relevant_chunk_ids": [
+      "7842e4bac43e",
+      "61e945f58aa4"
+    ]
+  },
+  {
+    "query": "How does YOLO divide the input image into grid cells to predict bounding boxes?",
+    "relevant_chunk_ids": [
+      "884a35b117aa",
+      "2b750886c48a"
+    ]
+  },
+  {
+    "query": "What are the main limitations of the YOLO architecture when dealing with small objects?",
+    "relevant_chunk_ids": [
+      "fff8499d2300"
+    ]
+  }
+]

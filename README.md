@@ -838,9 +838,7 @@ Critic + bounded revision loop: ✅
 
 Langfuse integration: ✅
 
-Dedicated Dataset Agent: 🚧 Planned
-
-Evaluation: 🚧 Upcoming
+Evaluation: ✅ Working (Retrieval, Tools, Citations, Latency, Rubric)
 
 FastAPI: 🚧 Upcoming
 
