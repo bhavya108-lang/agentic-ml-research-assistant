@@ -32,7 +32,7 @@ def retrieve_evidence(
 
     # Fix for Total Corpus Size Trap: ensure we pull enough candidates from 
     # both sparse and dense retrievers before fusing them, even if top_n is large.
-    search_k = max(5, top_n * 2)
+    search_k = max(15, top_n * 3)
 
     # Hybrid retrieval
     retrieved_documents = hybrid_search(

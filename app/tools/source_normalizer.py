@@ -29,5 +29,8 @@ def normalize_dataset_result(result: dict) -> dict:
         "content": result.get("description", ""),
         "metadata": {
             "tags": result.get("tags", []),
+            "task_categories": result.get("task_categories", []),
+            "downloads": result.get("downloads", 0),
+            "likes": result.get("likes", 0),
         },
     }

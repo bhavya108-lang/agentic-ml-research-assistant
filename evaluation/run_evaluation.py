@@ -1,4 +1,3 @@
-# evaluation/run_evaluation.py
 import json
 from evaluation.retrieval_metrics import evaluate_retrieval
 from evaluation.tool_metrics import evaluate_tools
@@ -16,7 +15,7 @@ def main():
     tool_queries = [
         "YOLO object detection architecture",
         "PASCAL VOC 2007 dataset",
-        test_query,  # Tests how tools handle a full conversational sentence
+        test_query,
     ]
     tool_scores = evaluate_tools(tool_queries, max_results=2)
 
