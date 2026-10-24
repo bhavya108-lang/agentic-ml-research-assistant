@@ -840,7 +840,7 @@ Langfuse integration: ✅
 
 Evaluation: ✅ Working (Retrieval, Tools, Citations, Latency, Rubric)
 
-FastAPI: 🚧 Upcoming
+FastAPI: ✅
 
 Frontend: 🚧 Upcoming
 
